@@ -15,4 +15,8 @@ class SizeConstaints {
 
   // widthFactor max = 1 min = 0
   static const double WIDTHFACTOR_4 = 0.4;
+
+  // font size
+  static const double FONTSIZE_16 = 16;
+  static const double FONTSIZE_24 = 24;
 }
