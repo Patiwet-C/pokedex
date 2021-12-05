@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/common/constants/app_colours.dart';
+import 'package:pokedex/common/constants/size_constants.dart';
 
 class CardView extends StatelessWidget {
   final String title;
@@ -8,6 +9,7 @@ class CardView extends StatelessWidget {
   final EdgeInsets? padding;
   final EdgeInsets? margin;
   final Alignment? textAlignment;
+  final double? fontSize;
 
   CardView({
     required this.title,
@@ -16,6 +18,7 @@ class CardView extends StatelessWidget {
     this.padding = const EdgeInsets.all(8),
     this.margin = const EdgeInsets.symmetric(horizontal: 8),
     this.textAlignment = Alignment.centerLeft,
+    this.fontSize = SizeConstaints.FONTSIZE_16,
   });
 
   @override
@@ -24,13 +27,18 @@ class CardView extends StatelessWidget {
       margin: margin,
       child: TextButton(
         style: TextButton.styleFrom(
-          backgroundColor: Colors.amber,
           primary: textColour,
           padding: padding,
           alignment: textAlignment,
         ),
         onPressed: onPressed,
-        child: Text(title),
+        child: Text(
+          title,
+          style: TextStyle(
+            color: AppColours.DEFAULT_TEXT,
+            fontSize: fontSize,
+          ),
+        ),
       ),
     );
   }
