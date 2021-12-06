@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:pokedex/data/api/common/generation_game_versions.dart';
 import 'package:pokedex/data/api/common/named_api_resource.dart';
 import 'package:pokedex/data/api/common/sprite.dart';
@@ -51,8 +50,8 @@ class PokemonHeldItem {
 
   static PokemonHeldItem fromJson(Map<String, dynamic> json) {
     return PokemonHeldItem(
-      item: json['item'],
-      versionDetails: (json['forms'] as List<dynamic>)
+      item: NamedAPIResource.fromJson(json['item']),
+      versionDetails: (json['version_details'] as List<dynamic>)
           .map(
               (e) => PokemonHeldItemVersion.fromJson(e as Map<String, dynamic>))
           .toList(),

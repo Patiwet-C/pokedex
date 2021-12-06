@@ -7,8 +7,9 @@ class BottomSheetView extends StatelessWidget {
   final String name;
   final String frontImage;
   final String backImage;
-  final String weight;
-  final String height;
+  final int weight;
+  final int height;
+  final String? loadingMessage;
 
   BottomSheetView({
     required this.name,
@@ -16,19 +17,27 @@ class BottomSheetView extends StatelessWidget {
     required this.backImage,
     required this.weight,
     required this.height,
+    this.loadingMessage,
   });
+
+  Widget _renderImage() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Image.network(
+          frontImage,
+          scale: SizeConstaints.SCALE_5,
+        ),
+        Image.network(
+          backImage,
+          scale: SizeConstaints.SCALE_5,
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    Widget _renderImage() {
-      return Row(
-        children: <Widget>[
-          Image.network(frontImage),
-          Image.network(backImage),
-        ],
-      );
-    }
-
     Widget _renderDetail({required String title, required String subtitle}) {
       return Row(
         children: <Widget>[
@@ -66,11 +75,11 @@ class BottomSheetView extends StatelessWidget {
           children: <Widget>[
             _renderDetail(
               title: StringConstants.BOTTOM_SHEET_VIEW_WEIGHT,
-              subtitle: weight,
+              subtitle: weight.toString(),
             ),
             _renderDetail(
               title: StringConstants.BOTTOM_SHEET_VIEW_HEIGHT,
-              subtitle: height,
+              subtitle: height.toString(),
             ),
           ],
         ),

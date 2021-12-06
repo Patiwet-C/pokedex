@@ -19,4 +19,7 @@ class SizeConstaints {
   // font size
   static const double FONTSIZE_16 = 16;
   static const double FONTSIZE_24 = 24;
+
+  // scale size max = 1 min = 0
+  static const double SCALE_5 = 0.5;
 }
