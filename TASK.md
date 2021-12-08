@@ -12,5 +12,3 @@ Estimated
 6. Implement logic for display pokemon list - 3nd day
 7. Implement logic for display detail for each list - 3rd day
 8. Unit test - 3rd - 5th day
-
-Actual result

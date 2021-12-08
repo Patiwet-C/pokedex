@@ -41,7 +41,7 @@ class LandingScreen extends StatelessWidget implements LandingView {
   final LandingPresenter _landingPresenter;
 
   LandingScreen()
-      : this._landingBloc = LandingBloc(),
+      : this._landingBloc = LandingBloc.init(),
         _landingPresenter = LandingPresenter() {
     _landingPresenter.setView(this);
   }
@@ -63,7 +63,7 @@ class LandingScreen extends StatelessWidget implements LandingView {
     required List<Widget> pokemonList,
   }) {
     return SingleChildScrollView(
-      controller: _landingBloc.getScrollController(),
+      controller: _landingBloc.scrollController,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: pokemonList,

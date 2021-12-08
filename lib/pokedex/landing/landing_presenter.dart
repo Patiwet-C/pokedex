@@ -58,7 +58,7 @@ class LandingPresenter implements LandingPresenterInterface {
             }),
       );
     });
-    if (_pokemonList.length > 0) {
+    if (_pokemonList.length > NumberConstants.FIRST_CHARACTER_INDEX) {
       _pokemonList = [..._pokemonList, ...items];
     } else {
       _pokemonList = items;

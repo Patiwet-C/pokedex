@@ -11,13 +11,28 @@ import 'package:rxdart/rxdart.dart';
 class LandingBloc {
   static const String _pokemonEndpoint = 'pokemon';
 
-  ApiProvider _apiProvider;
-  BehaviorSubject<ApiResponse<PokedexResponse>> _pokedexController;
-  BehaviorSubject<ApiResponse<PokemonResponse>> _pokemonController;
-  ScrollController _scrollController;
+  late ApiProvider _apiProvider;
+  late BehaviorSubject<ApiResponse<PokedexResponse>> _pokedexController;
+  late BehaviorSubject<ApiResponse<PokemonResponse>> _pokemonController;
+  late ScrollController _scrollController;
   String? _nextUrl;
 
-  LandingBloc()
+  LandingBloc({
+    required apiProvider,
+    required pokedexController,
+    required pokemonController,
+    required scrollController,
+  }) {
+    this._apiProvider = apiProvider;
+    this._pokedexController = pokedexController;
+    this._pokemonController = pokemonController;
+    this._scrollController = scrollController;
+
+    _getPokedexResponse();
+    _setScrollListiner();
+  }
+
+  LandingBloc.init()
       : this._apiProvider = ApiProvider(),
         this._pokedexController = BehaviorSubject(),
         this._pokemonController = BehaviorSubject(),
@@ -32,9 +47,7 @@ class LandingBloc {
   ValueStream<ApiResponse<PokemonResponse>> get pokemonStream =>
       _pokemonController.stream;
 
-  ScrollController getScrollController() {
-    return _scrollController;
-  }
+  ScrollController get scrollController => _scrollController;
 
   void _setScrollListiner() {
     _scrollController.addListener(() {
@@ -111,5 +124,7 @@ class LandingBloc {
 
   void dispose() {
     _pokedexController.close();
+    _pokemonController.close();
+    _scrollController.removeListener(_setScrollListiner);
   }
 }
